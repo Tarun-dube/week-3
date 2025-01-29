@@ -1,4 +1,4 @@
-package StudentRecordManagement.SinglyLinkedList;
+package SinglyLinkedList.StudentRecordManagement;
 
 public class StudentRecord {
     public StudentNode head;

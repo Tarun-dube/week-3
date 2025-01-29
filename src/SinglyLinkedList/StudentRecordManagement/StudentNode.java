@@ -1,4 +1,4 @@
-package StudentRecordManagement.SinglyLinkedList;
+package SinglyLinkedList.StudentRecordManagement;
 
 public class StudentNode{
     int rollno;

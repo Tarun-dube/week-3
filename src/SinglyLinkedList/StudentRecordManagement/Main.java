@@ -1,4 +1,4 @@
-package StudentRecordManagement.SinglyLinkedList;
+package SinglyLinkedList.StudentRecordManagement;
 
 import java.util.Scanner;
 
