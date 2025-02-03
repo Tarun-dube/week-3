@@ -5,7 +5,7 @@ import java.util.*;
 public class ZeroSumSubarrays {
     public static void findZeroSumSubarrays(int[] arr) {
         // Map to store (cumulative sum, list of indices where it occurs)
-        Map<Integer, List<Integer>> map = new HashMap<>();
+        HashMap<Integer, List<Integer>> map = new HashMap<>();
         List<int[]> result = new ArrayList<>();
         int sum = 0;
 
