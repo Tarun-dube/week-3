@@ -2,54 +2,54 @@ package HashMapandHashFunction;
 
 import java.util.LinkedList;
 
-class HashMap<K, V> {
-    private static class Entry<K, V> {
+class MyHashMap<K, V> {
+    private static class Node<K, V> {
         K key;
         V value;
 
-        Entry(K key, V value) {
+        Node(K key, V value) {
             this.key = key;
             this.value = value;
         }
     }
 
-    private int capacity = 10; // Default size
-    private LinkedList<Entry<K, V>>[] table;
+    private static final int DEFAULT_CAPACITY = 10;
+    private LinkedList<Node<K, V>>[] buckets;
 
     @SuppressWarnings("unchecked")
-    public HashMap() {
-        table = new LinkedList[capacity];
+    public MyHashMap() {
+        buckets = new LinkedList[DEFAULT_CAPACITY];
     }
 
     private int hash(K key) {
-        return Math.abs(key.hashCode()) % capacity;
+        return Math.abs(key.hashCode()) % DEFAULT_CAPACITY;
     }
 
     public void put(K key, V value) {
         int index = hash(key);
 
-        if (table[index] == null) {
-            table[index] = new LinkedList<>();
+        if (buckets[index] == null) {
+            buckets[index] = new LinkedList<>();
         }
 
-        for (Entry<K, V> entry : table[index]) {
-            if (entry.key.equals(key)) {
-                entry.value = value; // Update existing key
+        for (Node<K, V> node : buckets[index]) {
+            if (node.key.equals(key)) {
+                node.value = value; // Update existing key
                 return;
             }
         }
 
-        table[index].add(new Entry<>(key, value)); // Insert new key-value pair
+        buckets[index].add(new Node<>(key, value)); // Insert new key-value pair
     }
 
     public V get(K key) {
         int index = hash(key);
 
-        if (table[index] == null) return null;
+        if (buckets[index] == null) return null;
 
-        for (Entry<K, V> entry : table[index]) {
-            if (entry.key.equals(key)) {
-                return entry.value;
+        for (Node<K, V> node : buckets[index]) {
+            if (node.key.equals(key)) {
+                return node.value;
             }
         }
 
@@ -59,17 +59,17 @@ class HashMap<K, V> {
     public void remove(K key) {
         int index = hash(key);
 
-        if (table[index] == null) return;
+        if (buckets[index] == null) return;
 
-        table[index].removeIf(entry -> entry.key.equals(key)); // Remove key if found
+        buckets[index].removeIf(node -> node.key.equals(key)); // Remove key if found
     }
 
     public void printHashMap() {
-        for (int i = 0; i < capacity; i++) {
-            if (table[i] != null) {
+        for (int i = 0; i < DEFAULT_CAPACITY; i++) {
+            if (buckets[i] != null) {
                 System.out.print("Bucket " + i + ": ");
-                for (Entry<K, V> entry : table[i]) {
-                    System.out.print("[" + entry.key + " -> " + entry.value + "] ");
+                for (Node<K, V> node : buckets[i]) {
+                    System.out.print("[" + node.key + " -> " + node.value + "] ");
                 }
                 System.out.println();
             }
@@ -77,7 +77,7 @@ class HashMap<K, V> {
     }
 
     public static void main(String[] args) {
-        HashMap<String, Integer> map = new HashMap<>();
+        MyHashMap<String, Integer> map = new MyHashMap<>();
 
         map.put("Alice", 25);
         map.put("Bob", 30);
