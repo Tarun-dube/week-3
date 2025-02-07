@@ -1,8 +1,9 @@
 package stringbuffer;
 
 public class CompareTime {
-    public static void compare(StringBuilder a, StringBuffer b){
+    public static void compare(){
         //testig performance for stringbuilder
+        StringBuilder a = new StringBuilder();
         String s="hello";
         long start=System.nanoTime();
         for(int i=0; i<1000000; i++){
@@ -13,6 +14,7 @@ public class CompareTime {
         System.out.println("Time for StringBuilder: "+ (end-start)+" nanoseconds");
 
         //testing performance for string buffer
+        StringBuilder b = new StringBuilder();
         start=System.nanoTime();
         for(int i=0; i<1000000; i++){
             b.append(s);
@@ -24,9 +26,7 @@ public class CompareTime {
     }
 
     public static void main(String[] args) {
-        StringBuilder a=new StringBuilder();
-        StringBuffer b=new StringBuffer();
-        compare(a,b);
+        compare();
 
 
     }

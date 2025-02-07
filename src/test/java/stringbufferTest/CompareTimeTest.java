@@ -10,6 +10,8 @@ class CompareTimeTest {
     void testCompareTime1() {
         CompareTime compareTime = new CompareTime();
 
+        compareTime.compare();
+
     }
 
 }
